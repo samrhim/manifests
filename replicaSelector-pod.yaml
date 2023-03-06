@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bdd-deployment
+  labels:
+    app: bdd
+    env: prod
+    version: "1"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bdd
+  template:
+    metadata:
+      labels:
+        app: bdd
+        env: prod
+        version: "1"
+    spec:
+      containers:
+      - name: bdd
+        image: bdd:1.7.9
+        ports:
+        - containerPort: 80
